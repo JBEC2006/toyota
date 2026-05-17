@@ -21,14 +21,16 @@ export function HeroBanner() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 select-none flex flex-col items-center">
-        <Image
-          src="/logo.png"
-          alt="Toyota Gazoo Racing Uruguay"
-          width={420}
-          height={280}
-          priority
-          className="w-[260px] md:w-[360px] lg:w-[420px] h-auto drop-shadow-2xl"
-        />
+        <div className="bg-white rounded-2xl px-8 py-5 shadow-2xl">
+          <Image
+            src="/logo.png"
+            alt="Toyota Gazoo Racing Uruguay"
+            width={420}
+            height={280}
+            priority
+            className="w-[220px] md:w-[300px] lg:w-[360px] h-auto"
+          />
+        </div>
 
         <p className="mt-6 font-sans text-sm md:text-base text-white/60 uppercase tracking-[0.25em]">
           Colección Oficial Uruguay
