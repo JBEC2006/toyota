@@ -23,7 +23,7 @@ export function HeroBanner() {
       <div className="relative z-10 text-center px-6 select-none">
         <div className="mx-auto mb-6 w-[180px] md:w-[220px]">
           <Image
-            src="/logo-placeholder.svg"
+            src="/logo.png"
             alt="Toyota Gazoo Racing Uruguay"
             width={220}
             height={72}

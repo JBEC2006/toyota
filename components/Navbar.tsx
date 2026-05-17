@@ -23,7 +23,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex-shrink-0">
           <Image
-            src="/logo-placeholder.svg"
+            src="/logo.png"
             alt="Toyota Gazoo Racing Uruguay"
             width={130}
             height={42}
