@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply antialiased bg-toyota-black text-white;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .diagonal-accent {
+    background: linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 55%,
+      #EB0A1E 55%,
+      #EB0A1E 100%
+    );
+  }
+}

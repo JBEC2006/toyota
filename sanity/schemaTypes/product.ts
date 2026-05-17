@@ -1,0 +1,109 @@
+import { defineType, defineField } from 'sanity'
+
+const CATEGORIES = [
+  { title: 'Gorros de Visera',   value: 'gorros-de-visera' },
+  { title: 'Gorros de Lana',     value: 'gorros-de-lana' },
+  { title: 'Bufandas',           value: 'bufandas' },
+  { title: 'Camperas',           value: 'camperas' },
+  { title: 'Chombas',            value: 'chombas' },
+  { title: 'Bolsos y Mochilas',  value: 'bolsos-y-mochilas' },
+  { title: 'Billeteras',         value: 'billeteras' },
+  { title: 'Porta Netbook',      value: 'porta-netbook' },
+  { title: 'Llaveros',           value: 'llaveros' },
+  { title: 'Porta Llaves',       value: 'porta-llaves' },
+  { title: 'Botellas',           value: 'botellas' },
+  { title: 'Libros',             value: 'libros' },
+  { title: 'Paraguas',           value: 'paraguas' },
+  { title: 'Puzzles',            value: 'puzzles' },
+  { title: 'Otros',              value: 'otros' },
+]
+
+export const productSchema = defineType({
+  name: 'product',
+  title: 'Producto',
+  type: 'document',
+  fields: [
+    defineField({
+      name: 'name',
+      title: 'Nombre',
+      type: 'string',
+      validation: (Rule) => Rule.required().error('El nombre es obligatorio'),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: { source: 'name', maxLength: 96 },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'category',
+      title: 'Categoría',
+      type: 'string',
+      options: {
+        list: CATEGORIES,
+        layout: 'dropdown',
+      },
+    }),
+    defineField({
+      name: 'price',
+      title: 'Precio (UYU)',
+      type: 'number',
+      description: 'Precio en pesos uruguayos. Se mostrará como "$X IVA INC".',
+    }),
+    defineField({
+      name: 'description',
+      title: 'Descripción',
+      type: 'text',
+      rows: 4,
+    }),
+    defineField({
+      name: 'images',
+      title: 'Imágenes',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: 'alt',
+              title: 'Texto alternativo',
+              type: 'string',
+              description: 'Descripción breve de la imagen para accesibilidad.',
+            }),
+          ],
+        },
+      ],
+    }),
+    defineField({
+      name: 'featured',
+      title: 'Destacado',
+      type: 'boolean',
+      description: 'Marcar para destacar este producto en el catálogo.',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'available',
+      title: 'Disponible',
+      type: 'boolean',
+      description: 'Desactivar para ocultar el producto sin eliminarlo.',
+      initialValue: true,
+    }),
+  ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'category',
+      media: 'images.0',
+    },
+    prepare({ title, subtitle, media }) {
+      const cat = CATEGORIES.find((c) => c.value === subtitle)
+      return {
+        title,
+        subtitle: cat?.title ?? subtitle ?? 'Sin categoría',
+        media,
+      }
+    },
+  },
+})
