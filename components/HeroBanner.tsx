@@ -20,37 +20,22 @@ export function HeroBanner() {
       <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-toyota-red opacity-60" />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 select-none">
-        <div className="mx-auto mb-6 w-[180px] md:w-[220px]">
-          <Image
-            src="/logo.png"
-            alt="Toyota Gazoo Racing Uruguay"
-            width={220}
-            height={72}
-            priority
-            className="w-full h-auto"
-          />
-        </div>
+      <div className="relative z-10 text-center px-6 select-none flex flex-col items-center">
+        <Image
+          src="/logo.png"
+          alt="Toyota Gazoo Racing Uruguay"
+          width={420}
+          height={280}
+          priority
+          className="w-[260px] md:w-[360px] lg:w-[420px] h-auto drop-shadow-2xl"
+        />
 
-        <h1
-          className="font-display font-black uppercase text-white
-                     text-5xl md:text-7xl tracking-tight leading-none"
-        >
-          GAZOO RACING
-        </h1>
-
-        <p
-          className="mt-3 font-sans text-sm md:text-base text-white/60
-                     uppercase tracking-[0.25em]"
-        >
-          Colección Oficial Toyota Gazoo Racing Uruguay
+        <p className="mt-6 font-sans text-sm md:text-base text-white/60 uppercase tracking-[0.25em]">
+          Colección Oficial Uruguay
         </p>
 
-        <div className="mt-6 flex justify-center">
-          <span
-            className="inline-block h-0.5 w-16 bg-toyota-red rounded-full
-                       animate-pulse"
-          />
+        <div className="mt-4 flex justify-center">
+          <span className="inline-block h-0.5 w-16 bg-toyota-red rounded-full animate-pulse" />
         </div>
       </div>
     </section>
