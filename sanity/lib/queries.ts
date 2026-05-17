@@ -5,6 +5,7 @@ export const ALL_PRODUCTS_QUERY = defineQuery(`
     _id,
     name,
     slug,
+    section,
     category,
     price,
     description,

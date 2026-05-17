@@ -18,6 +18,12 @@ const CATEGORIES = [
   { title: 'Otros',              value: 'otros' },
 ]
 
+const SECTIONS = [
+  { title: 'Colección GR',            value: 'gr' },
+  { title: 'Accesorios Corolla Cross', value: 'corolla-cross' },
+  { title: 'Accesorios Yaris Cross',   value: 'yaris-cross' },
+]
+
 export const productSchema = defineType({
   name: 'product',
   title: 'Producto',
@@ -35,6 +41,16 @@ export const productSchema = defineType({
       type: 'slug',
       options: { source: 'name', maxLength: 96 },
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'section',
+      title: 'Sección',
+      type: 'string',
+      validation: (Rule) => Rule.required().error('La sección es obligatoria'),
+      options: {
+        list: SECTIONS,
+        layout: 'radio',
+      },
     }),
     defineField({
       name: 'category',
@@ -94,14 +110,14 @@ export const productSchema = defineType({
   preview: {
     select: {
       title: 'name',
-      subtitle: 'category',
+      subtitle: 'section',
       media: 'images.0',
     },
     prepare({ title, subtitle, media }) {
-      const cat = CATEGORIES.find((c) => c.value === subtitle)
+      const sec = SECTIONS.find((s) => s.value === subtitle)
       return {
         title,
-        subtitle: cat?.title ?? subtitle ?? 'Sin categoría',
+        subtitle: sec?.title ?? subtitle ?? 'Sin sección',
         media,
       }
     },

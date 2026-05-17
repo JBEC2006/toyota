@@ -15,6 +15,7 @@ export interface Product {
   _id: string
   name: string
   slug: { current: string }
+  section?: string
   category?: string
   price?: number
   description?: string
@@ -22,3 +23,5 @@ export interface Product {
   featured?: boolean
   available?: boolean
 }
+
+export type Section = 'ver-todo' | 'gr' | 'corolla-cross' | 'yaris-cross'

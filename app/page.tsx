@@ -2,9 +2,7 @@ export const dynamic = 'force-dynamic'
 
 import { sanityFetch } from '@/sanity/lib/live'
 import { ALL_PRODUCTS_QUERY } from '@/sanity/lib/queries'
-import { Navbar } from '@/components/Navbar'
-import { HeroBanner } from '@/components/HeroBanner'
-import { CatalogShell } from '@/components/CatalogShell'
+import { PageShell } from '@/components/PageShell'
 
 export default async function CatalogPage() {
   const { data: products } = await sanityFetch({
@@ -13,9 +11,7 @@ export default async function CatalogPage() {
 
   return (
     <main>
-      <Navbar />
-      <HeroBanner />
-      <CatalogShell products={products ?? []} />
+      <PageShell products={products ?? []} />
     </main>
   )
 }

@@ -15,24 +15,12 @@ export function ProductGrid({ products }: Props) {
   if (products.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-24 gap-4 text-center">
-        <svg
-          className="h-16 w-16 text-white/10"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1}
-            d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
+        <svg className="h-16 w-16 text-white/10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}
+            d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
         </svg>
         <p className="font-display font-bold uppercase text-white/30 text-lg tracking-wider">
-          No encontramos productos con esos filtros.
-        </p>
-        <p className="text-white/20 text-sm font-sans">
-          Probá con otra categoría o limpiar los filtros.
+          Próximamente nuevos productos. ¡Volvé pronto!
         </p>
       </div>
     )
@@ -42,19 +30,11 @@ export function ProductGrid({ products }: Props) {
     <>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
         {products.map((product) => (
-          <ProductCard
-            key={product._id}
-            product={product}
-            onClick={setSelected}
-          />
+          <ProductCard key={product._id} product={product} onClick={setSelected} />
         ))}
       </div>
-
       {selected && (
-        <ProductModal
-          product={selected}
-          onClose={() => setSelected(null)}
-        />
+        <ProductModal product={selected} onClose={() => setSelected(null)} />
       )}
     </>
   )
