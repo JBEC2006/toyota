@@ -85,31 +85,46 @@ export function ProductModal({ product, onClose }: Props) {
 
         {/* Image gallery */}
         <div
-          className="relative aspect-square overflow-hidden
+          className="relative aspect-square overflow-hidden bg-[#0d0d0d]
                      rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none"
-          style={{
-            background: `repeating-linear-gradient(
-              -52deg,
-              #0e0e0e 0px,
-              #0e0e0e 14px,
-              #EB0A1E26 14px,
-              #EB0A1E26 16px,
-              #0e0e0e 16px,
-              #0e0e0e 30px,
-              #EB0A1E10 30px,
-              #EB0A1E10 31px
-            )`
-          }}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
+          {/* Racing stripe background */}
+          <svg
+            className="absolute inset-0 w-full h-full pointer-events-none"
+            viewBox="0 0 600 600"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            {/* Main diagonal sweep — wide bottom-left, tapers top-right */}
+            <polygon points="0,370 0,190 510,0 600,0 600,55 120,300" fill="#EB0A1E" fillOpacity="0.18"/>
+            {/* Dark inner shadow for depth */}
+            <polygon points="0,330 0,240 440,0 510,0 90,265" fill="#000" fillOpacity="0.35"/>
+            {/* Sharp leading edge */}
+            <polygon points="0,192 507,0 515,0 2,197" fill="#EB0A1E" fillOpacity="0.9"/>
+            {/* Speed lines tapering off */}
+            <line x1="0" y1="208" x2="560" y2="14" stroke="#EB0A1E" strokeWidth="1.8" strokeOpacity="0.35"/>
+            <line x1="0" y1="222" x2="490" y2="35" stroke="#EB0A1E" strokeWidth="1.1" strokeOpacity="0.22"/>
+            <line x1="0" y1="234" x2="400" y2="52" stroke="#EB0A1E" strokeWidth="0.7" strokeOpacity="0.14"/>
+            <line x1="0" y1="244" x2="300" y2="66" stroke="#EB0A1E" strokeWidth="0.4" strokeOpacity="0.09"/>
+            {/* Counter diagonal accent — bottom-right */}
+            <polygon points="80,600 600,240 600,290 165,600" fill="#EB0A1E" fillOpacity="0.13"/>
+            {/* Sharp edge */}
+            <polygon points="88,600 600,243 600,249 94,600" fill="#EB0A1E" fillOpacity="0.7"/>
+            {/* Speed lines bottom */}
+            <line x1="120" y1="600" x2="600" y2="257" stroke="#EB0A1E" strokeWidth="1.5" strokeOpacity="0.28"/>
+            <line x1="158" y1="600" x2="600" y2="270" stroke="#EB0A1E" strokeWidth="0.9" strokeOpacity="0.17"/>
+            <line x1="200" y1="600" x2="600" y2="284" stroke="#EB0A1E" strokeWidth="0.5" strokeOpacity="0.1"/>
+          </svg>
+
           {imageUrl ? (
             <Image
               src={imageUrl}
               alt={activeImage?.alt ?? product.name}
               fill
               priority
-              className="object-contain"
+              className="object-contain relative z-10"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-white/10">
