@@ -6,6 +6,7 @@ import { schemaTypes } from './schemaTypes'
 export default defineConfig({
   name: 'toyota-gazoo-racing-uy',
   title: 'Toyota Gazoo Racing UY',
+  basePath: '/studio',
 
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production',
