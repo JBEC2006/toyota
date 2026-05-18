@@ -121,7 +121,7 @@ export function SearchFilter({
     <div
       id="catalog"
       className="flex flex-wrap gap-2 mb-8 sticky top-16 z-30
-                 bg-toyota-black pt-4 pb-4 -mx-4 px-4"
+                 bg-toyota-black pt-4 pb-4"
     >
       <Dropdown
         label="Sección"

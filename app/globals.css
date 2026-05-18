@@ -7,8 +7,13 @@
     color-scheme: dark;
   }
 
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     @apply antialiased bg-toyota-black text-white;
+    overflow-x: hidden;
   }
 }
 
