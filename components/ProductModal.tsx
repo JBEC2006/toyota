@@ -73,7 +73,7 @@ export function ProductModal({ product, onClose }: Props) {
         className="relative bg-toyota-charcoal rounded-2xl w-full max-w-4xl
                    max-h-[90vh] overflow-y-auto
                    grid md:grid-cols-2
-                   shadow-2xl pt-10 md:pt-0"
+                   shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
