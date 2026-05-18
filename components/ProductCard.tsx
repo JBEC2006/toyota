@@ -20,6 +20,14 @@ interface Props {
   onClick: (product: Product) => void
 }
 
+function preloadModalImage(product: Product) {
+  const img = product.images?.[0]
+  if (!img) return
+  const url = urlFor(img).width(800).auto('format').fit('max').url()
+  const el = new window.Image()
+  el.src = url
+}
+
 export function ProductCard({ product, onClick }: Props) {
   const firstImage = product.images?.[0]
   const imageUrl = firstImage
@@ -34,6 +42,8 @@ export function ProductCard({ product, onClick }: Props) {
   return (
     <article
       onClick={() => onClick(product)}
+      onMouseEnter={() => preloadModalImage(product)}
+      onTouchStart={() => preloadModalImage(product)}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => e.key === 'Enter' && onClick(product)}
