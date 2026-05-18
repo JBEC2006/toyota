@@ -20,7 +20,14 @@ interface Props {
 
 export function Navbar({ activeSection, onSectionChange, search, onSearch }: Props) {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
+  const [flash, setFlash] = useState(false)
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      setFlash(true)
+      setTimeout(() => setFlash(false), 500)
+    }
+  }
 
   return (
     <nav className="bg-toyota-black border-b border-white/10 sticky top-0 z-40">
@@ -60,37 +67,31 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
           })}
         </ul>
 
-        {/* Right: search + hamburger */}
+        {/* Right: search always visible + hamburger */}
         <div className="flex items-center gap-2">
-          <div className="flex items-center">
-            {searchOpen && (
-              <input
-                autoFocus
-                type="search"
-                placeholder="Buscar..."
-                value={search}
-                onChange={(e) => onSearch(e.target.value)}
-                onBlur={() => {
-                  if (!search) setSearchOpen(false)
-                }}
-                className="bg-toyota-charcoal border border-white/20 rounded-l-full
-                           px-4 py-1.5 text-sm text-white placeholder-white/40
-                           outline-none focus:border-toyota-red transition-colors
-                           w-40 md:w-56"
-              />
-            )}
-            <button
-              onClick={() => setSearchOpen((v) => !v)}
-              aria-label="Buscar"
-              className={`p-2 text-white/70 hover:text-white transition-colors
-                         ${searchOpen ? 'bg-toyota-charcoal rounded-r-full border border-l-0 border-white/20' : ''}`}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none"
+          <div className={`flex items-center bg-toyota-charcoal border rounded-full
+                           transition-all duration-300
+                           ${flash
+                             ? 'border-toyota-red shadow-[0_0_10px_rgba(235,10,30,0.5)]'
+                             : 'border-white/20'
+                           }`}>
+            <input
+              type="search"
+              placeholder="Buscar..."
+              value={search}
+              onChange={(e) => onSearch(e.target.value)}
+              onKeyDown={handleKeyDown}
+              className="bg-transparent pl-4 pr-1 py-1.5 text-sm text-white
+                         placeholder-white/40 outline-none w-32 md:w-52
+                         transition-all duration-200"
+            />
+            <span className="pr-3 text-white/40">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round"
                   d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
               </svg>
-            </button>
+            </span>
           </div>
 
           {/* Hamburger */}
