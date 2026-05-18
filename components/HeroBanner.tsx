@@ -19,7 +19,7 @@ export function HeroBanner() {
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <span
           className="font-display font-black leading-none text-white/[0.08]"
-          style={{ fontSize: 'clamp(320px, 75vw, 560px)', transform: 'skewX(-12deg)', letterSpacing: '-0.05em' }}
+          style={{ fontSize: 'clamp(300px, 65vh, 700px)', transform: 'skewX(-12deg)', letterSpacing: '-0.05em' }}
         >
           GR
         </span>
