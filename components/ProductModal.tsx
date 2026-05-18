@@ -85,8 +85,21 @@ export function ProductModal({ product, onClose }: Props) {
 
         {/* Image gallery */}
         <div
-          className="relative aspect-square bg-[#111] overflow-hidden
+          className="relative aspect-square overflow-hidden
                      rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none"
+          style={{
+            background: `repeating-linear-gradient(
+              -52deg,
+              #0e0e0e 0px,
+              #0e0e0e 14px,
+              #EB0A1E26 14px,
+              #EB0A1E26 16px,
+              #0e0e0e 16px,
+              #0e0e0e 30px,
+              #EB0A1E10 30px,
+              #EB0A1E10 31px
+            )`
+          }}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
