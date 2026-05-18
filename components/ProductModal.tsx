@@ -56,7 +56,7 @@ export function ProductModal({ product, onClose }: Props) {
 
   const activeImage = images[activeIndex]
   const imageUrl = activeImage
-    ? urlFor(activeImage).width(800).height(600).auto('format').fit('max').url()
+    ? urlFor(activeImage).width(800).auto('format').fit('max').url()
     : null
 
   const categoryLabel =
