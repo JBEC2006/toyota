@@ -125,13 +125,16 @@ export function ProductModal({ product, onClose }: Props) {
           </svg>
 
           {imageUrl ? (
-            <Image
-              src={imageUrl}
-              alt={activeImage?.alt ?? product.name}
-              fill
-              priority
-              className="object-contain relative z-10"
-            />
+            <div className="absolute inset-x-0 top-10 bottom-10 z-10">
+              <Image
+                src={imageUrl}
+                alt={activeImage?.alt ?? product.name}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 512px"
+                className="object-contain"
+              />
+            </div>
           ) : (
             <div className="w-full h-full flex items-center justify-center text-white/10">
               <svg className="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
