@@ -36,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${inter.variable} ${barlowCondensed.variable}`}>
-      <body>
+      <body className="overflow-x-hidden">
         {children}
         <SanityLive />
       </body>
