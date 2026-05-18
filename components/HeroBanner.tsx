@@ -15,16 +15,6 @@ export function HeroBanner() {
         }}
       />
 
-      {/* GR watermark */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <span
-          className="font-display font-black leading-none text-white/[0.08]"
-          style={{ fontSize: 'clamp(300px, 65vh, 700px)', transform: 'skewX(-12deg)', letterSpacing: '-0.05em' }}
-        >
-          GR
-        </span>
-      </div>
-
       {/* Animated red accent line */}
       <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-toyota-red opacity-60" />
 
@@ -35,7 +25,7 @@ export function HeroBanner() {
         </p>
 
         <h1 className="font-display font-black uppercase leading-none tracking-tight text-white text-5xl md:text-7xl lg:text-8xl">
-          Gazoo Racing
+          Accesorios
         </h1>
 
         <div className="mt-4 mb-3 flex items-center gap-3">

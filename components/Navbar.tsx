@@ -59,12 +59,12 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
         {/* Logo */}
         <button onClick={() => onSectionChange('ver-todo')} className="flex-shrink-0">
           <Image
-            src="/logo-white.png"
-            alt="Toyota Gazoo Racing Uruguay"
-            width={130}
-            height={42}
+            src="/logo-ayax.svg"
+            alt="Ayax Toyota"
+            width={213}
+            height={19}
             priority
-            className="h-10 w-auto"
+            className="h-5 w-auto"
           />
         </button>
 
