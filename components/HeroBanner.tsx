@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export function HeroBanner() {
   return (
-    <section className="relative w-full h-[58vh] min-h-[380px] bg-toyota-black overflow-hidden flex items-center justify-center">
+    <section className="relative w-full h-[42vh] min-h-[280px] bg-toyota-black overflow-hidden flex items-center justify-center">
       {/* Red diagonal accent */}
       <div className="absolute inset-0 diagonal-accent opacity-75" />
 
@@ -30,11 +30,15 @@ export function HeroBanner() {
           className="w-[260px] md:w-[360px] lg:w-[420px] h-auto drop-shadow-2xl"
         />
 
-        <p className="mt-6 font-sans text-sm md:text-base text-white/60 uppercase tracking-[0.25em]">
+        <p className="mt-5 font-sans text-sm md:text-base text-white/60 uppercase tracking-[0.25em]">
           Colección Oficial Uruguay
         </p>
 
-        <div className="mt-4 flex justify-center">
+        <p className="mt-2 font-sans text-[10px] md:text-xs text-white/30 uppercase tracking-[0.3em]">
+          Accesorios&nbsp;·&nbsp;Indumentaria&nbsp;·&nbsp;Equipamiento
+        </p>
+
+        <div className="mt-3 flex justify-center">
           <span className="inline-block h-0.5 w-16 bg-toyota-red rounded-full animate-pulse" />
         </div>
       </div>
