@@ -35,13 +35,13 @@ function Dropdown<T>({ label, options, value, onChange }: DropdownProps<T>) {
   const active = options.find((o) => o.value === value)
 
   useEffect(() => {
-    function handler(e: MouseEvent) {
+    function handler(e: PointerEvent) {
       if (e.target && ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false)
       }
     }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
+    document.addEventListener('pointerdown', handler)
+    return () => document.removeEventListener('pointerdown', handler)
   }, [])
 
   return (
@@ -52,7 +52,7 @@ function Dropdown<T>({ label, options, value, onChange }: DropdownProps<T>) {
                    bg-toyota-charcoal border border-white/10
                    text-xs font-display font-bold uppercase tracking-wider
                    text-white/80 hover:text-white hover:border-white/25
-                   transition-all duration-200 whitespace-nowrap"
+                   transition-all duration-200 whitespace-nowrap touch-manipulation"
       >
         <span className={active?.value !== (options[0]?.value as unknown) ? 'text-toyota-red' : ''}>
           {active?.label ?? label}
@@ -118,7 +118,7 @@ export function SearchFilter({
     <div
       id="catalog"
       className="flex flex-wrap gap-2 mb-8 sticky top-16 z-30
-                 bg-toyota-black/95 backdrop-blur-sm pt-4 pb-4 -mx-4 px-4"
+                 bg-toyota-black pt-4 pb-4 -mx-4 px-4"
     >
       <Dropdown
         label="Sección"
