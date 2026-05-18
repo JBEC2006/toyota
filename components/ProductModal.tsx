@@ -73,14 +73,14 @@ export function ProductModal({ product, onClose }: Props) {
         className="relative bg-toyota-charcoal rounded-2xl w-full max-w-4xl
                    max-h-[90vh] overflow-y-auto
                    grid md:grid-cols-2
-                   shadow-2xl"
+                   shadow-2xl pt-10 md:pt-0"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={handleClose}
           aria-label="Cerrar"
-          className="absolute top-3 right-3 z-50 p-2 rounded-full
+          className="absolute top-3 right-3 md:top-3 md:right-3 z-50 p-2 rounded-full
                      bg-black/70 text-white hover:bg-black/90
                      transition-colors"
         >
@@ -92,7 +92,7 @@ export function ProductModal({ product, onClose }: Props) {
         {/* Image gallery */}
         <div
           className="relative aspect-square overflow-hidden bg-[#0d0d0d]
-                     rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none"
+                     rounded-2xl md:rounded-l-2xl md:rounded-r-none"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
