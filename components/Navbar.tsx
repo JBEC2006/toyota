@@ -1,14 +1,20 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import type { Section } from '@/types/product'
 
-const NAV_ITEMS: { label: string; value: Section }[] = [
-  { label: 'Ver todo',      value: 'ver-todo' },
-  { label: 'Colección GR',  value: 'gr' },
+const TOP_NAV: { label: string; value: Section }[] = [
+  { label: 'Ver todo',     value: 'ver-todo' },
+  { label: 'Colección GR', value: 'gr' },
+]
+
+const MODEL_SECTIONS: { label: string; value: Section }[] = [
   { label: 'Corolla Cross', value: 'corolla-cross' },
   { label: 'Yaris Cross',   value: 'yaris-cross' },
+  { label: 'Hilux',         value: 'hilux' },
+  { label: 'Corolla',       value: 'corolla' },
+  { label: 'Yaris',         value: 'yaris' },
 ]
 
 interface Props {
@@ -19,9 +25,23 @@ interface Props {
 }
 
 export function Navbar({ activeSection, onSectionChange, search, onSearch }: Props) {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [flash, setFlash] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
+  const [menuOpen, setMenuOpen]     = useState(false)
+  const [modelsOpen, setModelsOpen] = useState(false)
+  const [flash, setFlash]           = useState(false)
+  const inputRef  = useRef<HTMLInputElement>(null)
+  const modelsRef = useRef<HTMLDivElement>(null)
+
+  const isModelActive = MODEL_SECTIONS.some((m) => m.value === activeSection)
+
+  useEffect(() => {
+    function handler(e: PointerEvent) {
+      if (modelsRef.current && !modelsRef.current.contains(e.target as Node)) {
+        setModelsOpen(false)
+      }
+    }
+    document.addEventListener('pointerdown', handler)
+    return () => document.removeEventListener('pointerdown', handler)
+  }, [])
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -48,7 +68,7 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
 
         {/* Desktop nav */}
         <ul className="hidden md:flex items-center gap-1">
-          {NAV_ITEMS.map((item) => {
+          {TOP_NAV.map((item) => {
             const isActive = activeSection === item.value
             return (
               <li key={item.value}>
@@ -66,9 +86,53 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
               </li>
             )
           })}
+
+          {/* Modelos dropdown */}
+          <li ref={modelsRef} className="relative">
+            <button
+              onClick={() => setModelsOpen((v) => !v)}
+              className={`px-3 py-1.5 rounded-full text-xs font-display font-bold
+                         uppercase tracking-wider transition-all duration-200
+                         flex items-center gap-1 touch-manipulation
+                         ${isModelActive
+                           ? 'bg-toyota-red text-white'
+                           : 'text-white/70 hover:text-white hover:bg-toyota-charcoal'
+                         }`}
+            >
+              Modelos
+              <svg
+                className={`h-3 w-3 transition-transform duration-200 ${modelsOpen ? 'rotate-180' : ''}`}
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {modelsOpen && (
+              <div className="absolute top-full mt-2 left-0 z-50
+                              bg-toyota-charcoal border border-white/10
+                              rounded-xl shadow-xl overflow-hidden min-w-max">
+                {MODEL_SECTIONS.map((m) => (
+                  <button
+                    key={m.value}
+                    onClick={() => { onSectionChange(m.value); setModelsOpen(false) }}
+                    className={`block w-full text-left px-4 py-2.5
+                                text-xs font-display font-bold uppercase tracking-wider
+                                transition-colors duration-150
+                                ${activeSection === m.value
+                                  ? 'text-toyota-red bg-white/5'
+                                  : 'text-white/70 hover:text-white hover:bg-white/5'
+                                }`}
+                  >
+                    {m.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </li>
         </ul>
 
-        {/* Right: search always visible + hamburger */}
+        {/* Right: search + hamburger */}
         <div className="flex items-center gap-2">
           <div className={`flex items-center bg-toyota-charcoal border rounded-full
                            transition-all duration-300
@@ -103,7 +167,7 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
 
           {/* Hamburger */}
           <button
-            className="md:hidden p-2 text-white/70 hover:text-white transition-colors"
+            className="md:hidden p-2 text-white/70 hover:text-white transition-colors touch-manipulation"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Menú"
           >
@@ -124,25 +188,67 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
       {menuOpen && (
         <div className="md:hidden bg-toyota-charcoal border-t border-white/10 px-4 py-4">
           <ul className="flex flex-col gap-1">
-            {NAV_ITEMS.map((item) => {
-              const isActive = activeSection === item.value
-              return (
-                <li key={item.value}>
-                  <button
-                    onClick={() => { onSectionChange(item.value); setMenuOpen(false) }}
-                    className={`block w-full text-left px-3 py-2 rounded-lg text-sm
-                               font-display font-bold uppercase tracking-wider
-                               transition-all
-                               ${isActive
-                                 ? 'bg-toyota-red text-white'
-                                 : 'text-white/70 hover:text-white hover:bg-white/5'
-                               }`}
-                  >
-                    {item.label}
-                  </button>
-                </li>
-              )
-            })}
+            {TOP_NAV.map((item) => (
+              <li key={item.value}>
+                <button
+                  onClick={() => { onSectionChange(item.value); setMenuOpen(false) }}
+                  className={`block w-full text-left px-3 py-2 rounded-lg text-sm
+                             font-display font-bold uppercase tracking-wider transition-all
+                             ${activeSection === item.value
+                               ? 'bg-toyota-red text-white'
+                               : 'text-white/70 hover:text-white hover:bg-white/5'
+                             }`}
+                >
+                  {item.label}
+                </button>
+              </li>
+            ))}
+
+            {/* Modelos accordion */}
+            <li>
+              <button
+                onClick={() => setModelsOpen((v) => !v)}
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm
+                           font-display font-bold uppercase tracking-wider transition-all
+                           touch-manipulation
+                           ${isModelActive
+                             ? 'text-toyota-red'
+                             : 'text-white/70 hover:text-white hover:bg-white/5'
+                           }`}
+              >
+                Modelos
+                <svg
+                  className={`h-3.5 w-3.5 transition-transform duration-200 ${modelsOpen ? 'rotate-180' : ''}`}
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              {modelsOpen && (
+                <ul className="ml-4 mt-1 flex flex-col gap-0.5">
+                  {MODEL_SECTIONS.map((m) => (
+                    <li key={m.value}>
+                      <button
+                        onClick={() => {
+                          onSectionChange(m.value)
+                          setMenuOpen(false)
+                          setModelsOpen(false)
+                        }}
+                        className={`block w-full text-left px-3 py-2 rounded-lg text-xs
+                                   font-display font-bold uppercase tracking-wider transition-all
+                                   ${activeSection === m.value
+                                     ? 'bg-toyota-red text-white'
+                                     : 'text-white/60 hover:text-white hover:bg-white/5'
+                                   }`}
+                      >
+                        {m.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
           </ul>
         </div>
       )}

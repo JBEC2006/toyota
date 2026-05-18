@@ -8,6 +8,9 @@ const SECTION_OPTIONS: { label: string; value: Section }[] = [
   { label: 'Colección GR',        value: 'gr' },
   { label: 'Corolla Cross',       value: 'corolla-cross' },
   { label: 'Yaris Cross',         value: 'yaris-cross' },
+  { label: 'Hilux',               value: 'hilux' },
+  { label: 'Corolla',             value: 'corolla' },
+  { label: 'Yaris',               value: 'yaris' },
 ]
 
 const CATEGORY_OPTIONS = [

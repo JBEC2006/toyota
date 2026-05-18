@@ -9,6 +9,9 @@ const SECTION_LABELS: Record<string, string> = {
   'gr':            'Colección GR',
   'corolla-cross': 'Corolla Cross',
   'yaris-cross':   'Yaris Cross',
+  'hilux':         'Hilux',
+  'corolla':       'Corolla',
+  'yaris':         'Yaris',
 }
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -22,7 +25,10 @@ function sortPriority(p: Product): number {
   if (p.section === 'gr') return 2
   if (p.section === 'corolla-cross') return 3
   if (p.section === 'yaris-cross') return 4
-  return 5
+  if (p.section === 'hilux') return 5
+  if (p.section === 'corolla') return 6
+  if (p.section === 'yaris') return 7
+  return 8
 }
 
 function defaultSort(a: Product, b: Product): number {

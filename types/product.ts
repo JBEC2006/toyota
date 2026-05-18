@@ -24,5 +24,8 @@ export interface Product {
   available?: boolean
 }
 
-export type Section = 'ver-todo' | 'gr' | 'corolla-cross' | 'yaris-cross'
+export type Section =
+  | 'ver-todo' | 'gr'
+  | 'corolla-cross' | 'yaris-cross'
+  | 'hilux' | 'corolla' | 'yaris'
 export type SortOrder = 'default' | 'price-asc' | 'price-desc'

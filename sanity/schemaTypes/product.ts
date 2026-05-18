@@ -9,6 +9,9 @@ const SECTIONS = [
   { title: 'Colección GR',            value: 'gr' },
   { title: 'Accesorios Corolla Cross', value: 'corolla-cross' },
   { title: 'Accesorios Yaris Cross',   value: 'yaris-cross' },
+  { title: 'Accesorios Hilux',         value: 'hilux' },
+  { title: 'Accesorios Corolla',       value: 'corolla' },
+  { title: 'Accesorios Yaris',         value: 'yaris' },
 ]
 
 export const productSchema = defineType({
