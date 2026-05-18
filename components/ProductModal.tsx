@@ -74,8 +74,8 @@ export function ProductModal({ product, onClose }: Props) {
         <button
           onClick={handleClose}
           aria-label="Cerrar"
-          className="absolute top-3 right-3 z-10 p-2 rounded-full
-                     bg-black/50 text-white/60 hover:text-white hover:bg-black/80
+          className="absolute top-3 right-3 z-50 p-2 rounded-full
+                     bg-black/70 text-white hover:bg-black/90
                      transition-colors"
         >
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
