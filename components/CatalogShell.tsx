@@ -16,6 +16,15 @@ const CATEGORY_LABELS: Record<string, string> = {
   'merchandising': 'Merchandising',
 }
 
+function sortPriority(p: Product): number {
+  if (p.section === 'gr' && p.category === 'indumentaria') return 0
+  if (p.section === 'gr' && p.category === 'merchandising') return 1
+  if (p.section === 'gr') return 2
+  if (p.section === 'corolla-cross') return 3
+  if (p.section === 'yaris-cross') return 4
+  return 5
+}
+
 interface Props {
   products: Product[]
   activeSection: Section
@@ -55,16 +64,22 @@ export function CatalogShell({ products, activeSection, search }: Props) {
   }, [products, activeSection, sectionProducts])
 
   const filtered = useMemo(() => {
-    return sectionProducts.filter((p) => {
-      const matchSearch =
-        search === '' || p.name.toLowerCase().includes(search.toLowerCase())
-      const matchFilter =
-        activeCategory === null ||
-        (activeSection === 'ver-todo'
-          ? p.section === activeCategory
-          : p.category === activeCategory)
-      return matchSearch && matchFilter
-    })
+    return sectionProducts
+      .filter((p) => {
+        const matchSearch =
+          search === '' || p.name.toLowerCase().includes(search.toLowerCase())
+        const matchFilter =
+          activeCategory === null ||
+          (activeSection === 'ver-todo'
+            ? p.section === activeCategory
+            : p.category === activeCategory)
+        return matchSearch && matchFilter
+      })
+      .sort((a, b) => {
+        const diff = sortPriority(a) - sortPriority(b)
+        if (diff !== 0) return diff
+        return a.name.localeCompare(b.name, 'es')
+      })
   }, [sectionProducts, search, activeCategory, activeSection])
 
   return (
