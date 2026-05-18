@@ -226,7 +226,7 @@ export function ProductModal({ product, onClose }: Props) {
           )}
 
           {product.description && (
-            <p className="text-white/60 text-sm leading-relaxed border-t border-white/10 pt-4">
+            <p className="text-white/60 text-sm leading-relaxed border-t border-white/10 pt-4 whitespace-pre-line">
               {product.description}
             </p>
           )}
