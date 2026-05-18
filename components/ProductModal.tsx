@@ -232,21 +232,11 @@ export function ProductModal({ product, onClose }: Props) {
             </p>
           )}
 
-          <div className="mt-auto pt-4 border-t border-white/10 flex items-center gap-3">
-            {product.available ? (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-900/30
-                               text-emerald-400 rounded-full text-xs font-display font-bold uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                Disponible
-              </span>
-            ) : (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/5
-                               text-white/30 rounded-full text-xs font-display font-bold uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-white/30" />
-                No disponible
-              </span>
-            )}
-          </div>
+          <p className="mt-auto pt-4 border-t border-white/10
+                        text-white/30 text-[10px] font-sans uppercase tracking-wider">
+            * Productos sujetos a disponibilidad de stock.
+            Consultá antes de realizar tu pedido.
+          </p>
         </div>
       </div>
     </div>
