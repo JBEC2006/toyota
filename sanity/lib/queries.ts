@@ -8,6 +8,7 @@ export const ALL_PRODUCTS_QUERY = defineQuery(`
     section,
     category,
     price,
+    currency,
     description,
     images[] {
       asset,

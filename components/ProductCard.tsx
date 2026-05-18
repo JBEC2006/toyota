@@ -97,7 +97,9 @@ export function ProductCard({ product, onClick }: Props) {
 
         {product.price != null && (
           <p className="mt-2 text-white font-bold text-base">
-            ${product.price.toLocaleString('es-UY')}{' '}
+            {product.currency === 'USD'
+              ? `U$S ${product.price.toLocaleString('es-UY')}`
+              : `$${product.price.toLocaleString('es-UY')}`}{' '}
             <span className="text-white/40 text-xs font-normal">IVA INC</span>
           </p>
         )}

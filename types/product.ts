@@ -18,6 +18,7 @@ export interface Product {
   section?: string
   category?: string
   price?: number
+  currency?: string
   description?: string
   images?: SanityImage[]
   featured?: boolean

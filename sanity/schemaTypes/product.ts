@@ -63,9 +63,21 @@ export const productSchema = defineType({
     }),
     defineField({
       name: 'price',
-      title: 'Precio (UYU)',
+      title: 'Precio',
       type: 'number',
-      description: 'Precio en pesos uruguayos. Se mostrará como "$X IVA INC".',
+    }),
+    defineField({
+      name: 'currency',
+      title: 'Moneda',
+      type: 'string',
+      initialValue: 'UYU',
+      options: {
+        list: [
+          { title: 'Pesos uruguayos ($)', value: 'UYU' },
+          { title: 'Dólares (U$S)',       value: 'USD' },
+        ],
+        layout: 'radio',
+      },
     }),
     defineField({
       name: 'description',

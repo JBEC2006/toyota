@@ -196,7 +196,9 @@ export function ProductModal({ product, onClose }: Props) {
           {product.price != null && (
             <div className="flex items-baseline gap-2">
               <span className="text-3xl font-bold text-white">
-                ${product.price.toLocaleString('es-UY')}
+                {product.currency === 'USD'
+                  ? `U$S ${product.price.toLocaleString('es-UY')}`
+                  : `$${product.price.toLocaleString('es-UY')}`}
               </span>
               <span className="text-sm text-white/40 font-sans">IVA INC</span>
             </div>
