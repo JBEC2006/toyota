@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import { SearchFilter } from './SearchFilter'
 import { ProductGrid } from './ProductGrid'
-import type { Product, Section } from '@/types/product'
+import type { Product, Section, SortOrder } from '@/types/product'
 
 const SECTION_LABELS: Record<string, string> = {
   'gr':            'Colección GR',
@@ -25,17 +25,28 @@ function sortPriority(p: Product): number {
   return 5
 }
 
+function defaultSort(a: Product, b: Product): number {
+  const diff = sortPriority(a) - sortPriority(b)
+  if (diff !== 0) return diff
+  const nameDiff = a.name.localeCompare(b.name, 'es')
+  if (nameDiff !== 0) return nameDiff
+  return (a.price ?? 0) - (b.price ?? 0)
+}
+
 interface Props {
   products: Product[]
   activeSection: Section
+  onSectionChange: (s: Section) => void
   search: string
 }
 
-export function CatalogShell({ products, activeSection, search }: Props) {
+export function CatalogShell({ products, activeSection, onSectionChange, search }: Props) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
+  const [sortOrder, setSortOrder] = useState<SortOrder>('default')
 
   useEffect(() => {
     setActiveCategory(null)
+    setSortOrder('default')
   }, [activeSection])
 
   const sectionProducts = useMemo(() => {
@@ -43,54 +54,41 @@ export function CatalogShell({ products, activeSection, search }: Props) {
     return products.filter((p) => p.section === activeSection)
   }, [products, activeSection])
 
-  const filterPills = useMemo(() => {
-    if (activeSection === 'ver-todo') {
-      return (['gr', 'corolla-cross', 'yaris-cross'] as const)
-        .filter((s) => products.some((p) => p.section === s))
-        .map((s) => ({ value: s, label: SECTION_LABELS[s] }))
-    }
-    const seen = new Set<string>()
-    const result: Array<{ value: string; label: string }> = []
-    for (const p of sectionProducts) {
-      if (p.category && !seen.has(p.category)) {
-        seen.add(p.category)
-        result.push({
-          value: p.category,
-          label: CATEGORY_LABELS[p.category] ?? p.category.replace(/-/g, ' '),
-        })
-      }
-    }
-    return result
-  }, [products, activeSection, sectionProducts])
-
   const filtered = useMemo(() => {
-    return sectionProducts
-      .filter((p) => {
-        const matchSearch =
-          search === '' || p.name.toLowerCase().includes(search.toLowerCase())
-        const matchFilter =
-          activeCategory === null ||
-          (activeSection === 'ver-todo'
-            ? p.section === activeCategory
-            : p.category === activeCategory)
-        return matchSearch && matchFilter
-      })
-      .sort((a, b) => {
-        const diff = sortPriority(a) - sortPriority(b)
-        if (diff !== 0) return diff
-        const nameDiff = a.name.localeCompare(b.name, 'es')
-        if (nameDiff !== 0) return nameDiff
-        return (a.price ?? 0) - (b.price ?? 0)
-      })
-  }, [sectionProducts, search, activeCategory, activeSection])
+    const base = sectionProducts.filter((p) => {
+      const matchSearch =
+        search === '' || p.name.toLowerCase().includes(search.toLowerCase())
+      const matchFilter =
+        activeCategory === null ||
+        (activeSection === 'ver-todo'
+          ? p.section === activeCategory
+          : p.category === activeCategory)
+      return matchSearch && matchFilter
+    })
+
+    if (sortOrder === 'default') {
+      return [...base].sort(defaultSort)
+    }
+
+    const dir = sortOrder === 'price-asc' ? 1 : -1
+    return [...base].sort((a, b) => {
+      const ac = a.currency === 'USD' ? 1 : 0
+      const bc = b.currency === 'USD' ? 1 : 0
+      if (ac !== bc) return ac - bc
+      return dir * ((a.price ?? 0) - (b.price ?? 0))
+    })
+  }, [sectionProducts, search, activeCategory, activeSection, sortOrder])
 
   return (
     <section className="px-4 py-10 max-w-screen-xl mx-auto">
       <SearchFilter
-        filterPills={filterPills}
+        activeSection={activeSection}
+        onSectionChange={onSectionChange}
         activeCategory={activeCategory}
-        onCategory={(cat) => setActiveCategory((prev) => (prev === cat ? null : cat))}
-        onClear={() => setActiveCategory(null)}
+        onCategory={setActiveCategory}
+        hasCategoryFilter={activeSection === 'gr'}
+        sortOrder={sortOrder}
+        onSort={setSortOrder}
       />
       <ProductGrid products={filtered} />
     </section>

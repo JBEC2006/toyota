@@ -36,6 +36,7 @@ export function PageShell({ products }: Props) {
       <CatalogShell
         products={products}
         activeSection={activeSection}
+        onSectionChange={handleSectionChange}
         search={search}
       />
     </>

@@ -25,3 +25,4 @@ export interface Product {
 }
 
 export type Section = 'ver-todo' | 'gr' | 'corolla-cross' | 'yaris-cross'
+export type SortOrder = 'default' | 'price-asc' | 'price-desc'
