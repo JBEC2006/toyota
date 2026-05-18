@@ -45,7 +45,7 @@ export function ProductCard({ product, onClick }: Props) {
                  focus-visible:ring-2 focus-visible:ring-toyota-red"
     >
       {/* Image area */}
-      <div className="relative aspect-square bg-[#111] overflow-hidden">
+      <div className="relative aspect-square bg-white overflow-hidden">
         {imageUrl ? (
           <Image
             src={imageUrl}
