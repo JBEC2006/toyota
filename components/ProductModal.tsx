@@ -50,7 +50,7 @@ export function ProductModal({ product, onClose }: Props) {
 
   const activeImage = images[activeIndex]
   const imageUrl = activeImage
-    ? urlFor(activeImage).width(1200).height(900).auto('format').fit('crop').url()
+    ? urlFor(activeImage).width(1200).height(900).auto('format').fit('max').url()
     : null
 
   const categoryLabel =
@@ -96,7 +96,7 @@ export function ProductModal({ product, onClose }: Props) {
               alt={activeImage?.alt ?? product.name}
               fill
               priority
-              className="object-cover"
+              className="object-contain"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-white/10">
