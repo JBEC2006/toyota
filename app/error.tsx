@@ -27,7 +27,7 @@ export default function Error({
         Algo salió mal
       </p>
       <button
-        onClick={reset}
+        onClick={() => window.location.reload()}
         className="px-6 py-2 bg-toyota-red text-white rounded-full
                    font-display font-bold uppercase tracking-wider text-sm
                    hover:bg-red-700 transition-colors"
