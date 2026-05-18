@@ -28,16 +28,18 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
   const [menuOpen, setMenuOpen]     = useState(false)
   const [modelsOpen, setModelsOpen] = useState(false)
   const [flash, setFlash]           = useState(false)
-  const inputRef  = useRef<HTMLInputElement>(null)
-  const modelsRef = useRef<HTMLLIElement>(null)
+  const inputRef           = useRef<HTMLInputElement>(null)
+  const modelsRef          = useRef<HTMLLIElement>(null)
+  const mobileModelsRef    = useRef<HTMLLIElement>(null)
 
   const isModelActive = MODEL_SECTIONS.some((m) => m.value === activeSection)
 
   useEffect(() => {
     function handler(e: PointerEvent) {
-      if (modelsRef.current && !modelsRef.current.contains(e.target as Node)) {
-        setModelsOpen(false)
-      }
+      const target = e.target as Node
+      const inDesktop = modelsRef.current?.contains(target)
+      const inMobile  = mobileModelsRef.current?.contains(target)
+      if (!inDesktop && !inMobile) setModelsOpen(false)
     }
     document.addEventListener('pointerdown', handler)
     return () => document.removeEventListener('pointerdown', handler)
@@ -205,7 +207,7 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
             ))}
 
             {/* Modelos accordion */}
-            <li>
+            <li ref={mobileModelsRef}>
               <button
                 onClick={() => setModelsOpen((v) => !v)}
                 className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm
