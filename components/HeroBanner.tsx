@@ -18,8 +18,8 @@ export function HeroBanner() {
       {/* GR watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <span
-          className="font-display font-black leading-none text-white/[0.07]"
-          style={{ fontSize: '55vw', transform: 'rotate(-32deg) translate(12%, 0%)' }}
+          className="font-display font-black leading-none text-white/[0.08]"
+          style={{ fontSize: 'clamp(180px, 55vw, 520px)', transform: 'skewX(-12deg)', letterSpacing: '-0.05em' }}
         >
           GR
         </span>
