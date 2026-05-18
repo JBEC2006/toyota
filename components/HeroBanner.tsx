@@ -15,25 +15,14 @@ export function HeroBanner() {
         }}
       />
 
-      {/* Toyota emblem watermark */}
+      {/* Toyota logo watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-        <svg
-          viewBox="0 0 270 186"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo_toyota_blanco_fondo_transparente.png"
+          alt=""
           className="w-[62vw] md:w-[38vw] max-w-[440px] opacity-[0.09]"
-          fill="white"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          {/* Outer ring */}
-          <path
-            fillRule="evenodd"
-            d="M 4,93 A 131,90 0 1,1 266,93 A 131,90 0 1,1 4,93 Z M 20,93 A 115,74 0 1,0 250,93 A 115,74 0 1,0 20,93 Z"
-          />
-          {/* T crossbar */}
-          <ellipse cx="135" cy="72" rx="88" ry="35" />
-          {/* T stem */}
-          <ellipse cx="135" cy="106" rx="29" ry="79" />
-        </svg>
+        />
       </div>
 
       {/* Animated red accent line */}
@@ -46,7 +35,7 @@ export function HeroBanner() {
         </p>
 
         <h1 className="font-display font-black uppercase leading-none tracking-tight text-white text-5xl md:text-7xl lg:text-8xl">
-          Accesorios
+          Collection
         </h1>
 
         <div className="mt-4 mb-3 flex items-center gap-3">
