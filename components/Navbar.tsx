@@ -64,7 +64,7 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
             width={213}
             height={19}
             priority
-            className="h-5 w-auto"
+            className="h-3.5 md:h-5 w-auto"
           />
         </button>
 
@@ -150,7 +150,7 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
               onChange={(e) => onSearch(e.target.value)}
               onKeyDown={handleKeyDown}
               className="bg-transparent pl-4 pr-1 py-1.5 text-sm text-white
-                         placeholder-white/40 outline-none w-32 md:w-52
+                         placeholder-white/40 outline-none w-24 md:w-52
                          transition-all duration-200"
             />
             <button
