@@ -73,8 +73,8 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
           <div className={`flex items-center bg-toyota-charcoal border rounded-full
                            transition-all duration-300
                            ${flash
-                             ? 'border-toyota-red shadow-[0_0_10px_rgba(235,10,30,0.5)]'
-                             : 'border-white/20'
+                             ? 'border-toyota-red shadow-[0_0_12px_rgba(235,10,30,0.6)]'
+                             : 'border-white/20 hover:border-toyota-red/60 hover:shadow-[0_0_8px_rgba(235,10,30,0.25)]'
                            }`}>
             <input
               ref={inputRef}
