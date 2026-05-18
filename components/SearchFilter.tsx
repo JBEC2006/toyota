@@ -101,6 +101,7 @@ interface Props {
   hasCategoryFilter: boolean
   sortOrder: SortOrder
   onSort: (s: SortOrder) => void
+  onReset: () => void
 }
 
 export function SearchFilter({
@@ -108,7 +109,11 @@ export function SearchFilter({
   activeCategory, onCategory,
   hasCategoryFilter,
   sortOrder, onSort,
+  onReset,
 }: Props) {
+  const hasActiveFilters =
+    activeSection !== 'ver-todo' || activeCategory !== null || sortOrder !== 'default'
+
   return (
     <div
       id="catalog"
@@ -137,6 +142,25 @@ export function SearchFilter({
         value={sortOrder}
         onChange={onSort}
       />
+
+      {hasActiveFilters && (
+        <button
+          onClick={onReset}
+          aria-label="Limpiar filtros"
+          className="flex items-center gap-1.5 px-3 py-2 rounded-xl
+                     border border-white/10 text-white/40
+                     hover:text-toyota-red hover:border-toyota-red/40
+                     transition-all duration-200"
+        >
+          <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round"
+              d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+          </svg>
+          <span className="text-xs font-display font-bold uppercase tracking-wider">
+            Limpiar
+          </span>
+        </button>
+      )}
     </div>
   )
 }

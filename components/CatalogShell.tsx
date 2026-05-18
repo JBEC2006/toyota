@@ -89,6 +89,11 @@ export function CatalogShell({ products, activeSection, onSectionChange, search 
         hasCategoryFilter={activeSection === 'gr'}
         sortOrder={sortOrder}
         onSort={setSortOrder}
+        onReset={() => {
+          onSectionChange('ver-todo')
+          setActiveCategory(null)
+          setSortOrder('default')
+        }}
       />
       <ProductGrid products={filtered} />
     </section>
