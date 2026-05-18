@@ -28,7 +28,7 @@ function sortPriority(p: Product): number {
 function defaultSort(a: Product, b: Product): number {
   const diff = sortPriority(a) - sortPriority(b)
   if (diff !== 0) return diff
-  const nameDiff = a.name.localeCompare(b.name, 'es')
+  const nameDiff = (a.name ?? '').localeCompare(b.name ?? '', 'es')
   if (nameDiff !== 0) return nameDiff
   return (a.price ?? 0) - (b.price ?? 0)
 }

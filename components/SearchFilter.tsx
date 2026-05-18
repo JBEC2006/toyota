@@ -36,7 +36,7 @@ function Dropdown<T>({ label, options, value, onChange }: DropdownProps<T>) {
 
   useEffect(() => {
     function handler(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
+      if (e.target && ref.current && !ref.current.contains(e.target as Node)) {
         setOpen(false)
       }
     }
