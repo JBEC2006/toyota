@@ -10,6 +10,12 @@ const CATEGORY_LABELS: Record<string, string> = {
   'merchandising': 'Merchandising',
 }
 
+const SECTION_LABELS: Record<string, string> = {
+  'gr':            'Colección GR',
+  'corolla-cross': 'Corolla Cross',
+  'yaris-cross':   'Yaris Cross',
+}
+
 interface Props {
   product: Product
   onClose: () => void
@@ -55,7 +61,7 @@ export function ProductModal({ product, onClose }: Props) {
 
   const categoryLabel =
     (product.category && CATEGORY_LABELS[product.category]) ??
-    product.category?.replace(/-/g, ' ') ??
+    (product.section && SECTION_LABELS[product.section]) ??
     ''
 
   return (
