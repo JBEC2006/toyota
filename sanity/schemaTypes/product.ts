@@ -1,21 +1,8 @@
 import { defineType, defineField } from 'sanity'
 
 const CATEGORIES = [
-  { title: 'Gorros de Visera',   value: 'gorros-de-visera' },
-  { title: 'Gorros de Lana',     value: 'gorros-de-lana' },
-  { title: 'Bufandas',           value: 'bufandas' },
-  { title: 'Camperas',           value: 'camperas' },
-  { title: 'Chombas',            value: 'chombas' },
-  { title: 'Bolsos y Mochilas',  value: 'bolsos-y-mochilas' },
-  { title: 'Billeteras',         value: 'billeteras' },
-  { title: 'Porta Netbook',      value: 'porta-netbook' },
-  { title: 'Llaveros',           value: 'llaveros' },
-  { title: 'Porta Llaves',       value: 'porta-llaves' },
-  { title: 'Botellas',           value: 'botellas' },
-  { title: 'Libros',             value: 'libros' },
-  { title: 'Paraguas',           value: 'paraguas' },
-  { title: 'Puzzles',            value: 'puzzles' },
-  { title: 'Otros',              value: 'otros' },
+  { title: 'Indumentaria',  value: 'indumentaria' },
+  { title: 'Merchandising', value: 'merchandising' },
 ]
 
 const SECTIONS = [
@@ -54,11 +41,12 @@ export const productSchema = defineType({
     }),
     defineField({
       name: 'category',
-      title: 'Categoría',
+      title: 'Categoría (solo GR)',
       type: 'string',
+      hidden: ({ document }) => document?.section !== 'gr',
       options: {
         list: CATEGORIES,
-        layout: 'dropdown',
+        layout: 'radio',
       },
     }),
     defineField({

@@ -12,21 +12,8 @@ const SECTION_LABELS: Record<string, string> = {
 }
 
 const CATEGORY_LABELS: Record<string, string> = {
-  'gorros-de-visera':  'Gorros Visera',
-  'gorros-de-lana':    'Gorros Lana',
-  'bufandas':          'Bufandas',
-  'camperas':          'Camperas',
-  'chombas':           'Chombas',
-  'bolsos-y-mochilas': 'Bolsos y Mochilas',
-  'billeteras':        'Billeteras',
-  'porta-netbook':     'Porta Netbook',
-  'llaveros':          'Llaveros',
-  'porta-llaves':      'Porta Llaves',
-  'botellas':          'Botellas',
-  'libros':            'Libros',
-  'paraguas':          'Paraguas',
-  'puzzles':           'Puzzles',
-  'otros':             'Otros',
+  'indumentaria':  'Indumentaria',
+  'merchandising': 'Merchandising',
 }
 
 interface Props {
