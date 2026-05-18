@@ -29,7 +29,7 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
   const [modelsOpen, setModelsOpen] = useState(false)
   const [flash, setFlash]           = useState(false)
   const inputRef  = useRef<HTMLInputElement>(null)
-  const modelsRef = useRef<HTMLDivElement>(null)
+  const modelsRef = useRef<HTMLLIElement>(null)
 
   const isModelActive = MODEL_SECTIONS.some((m) => m.value === activeSection)
 
