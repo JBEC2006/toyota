@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 import type { Section } from '@/types/product'
 
@@ -21,6 +21,7 @@ interface Props {
 export function Navbar({ activeSection, onSectionChange, search, onSearch }: Props) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [flash, setFlash] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -76,6 +77,7 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
                              : 'border-white/20'
                            }`}>
             <input
+              ref={inputRef}
               type="search"
               placeholder="Buscar..."
               value={search}
@@ -85,13 +87,18 @@ export function Navbar({ activeSection, onSectionChange, search, onSearch }: Pro
                          placeholder-white/40 outline-none w-32 md:w-52
                          transition-all duration-200"
             />
-            <span className="pr-3 text-white/40">
+            <button
+              type="button"
+              onClick={() => inputRef.current?.focus()}
+              aria-label="Buscar"
+              className="pr-3 pl-1 text-white/40 hover:text-white/70 transition-colors"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round"
                   d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
               </svg>
-            </span>
+            </button>
           </div>
 
           {/* Hamburger */}
