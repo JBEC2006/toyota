@@ -1,8 +1,7 @@
-import Image from 'next/image'
-
 export function HeroBanner() {
   return (
     <section className="relative w-full h-[42vh] min-h-[280px] bg-toyota-black overflow-hidden flex items-center justify-center">
+
       {/* Red diagonal accent */}
       <div className="absolute inset-0 diagonal-accent opacity-75" />
 
@@ -16,32 +15,42 @@ export function HeroBanner() {
         }}
       />
 
+      {/* GR watermark */}
+      <div className="absolute inset-0 flex items-center justify-end pr-[5%] pointer-events-none select-none overflow-hidden">
+        <span
+          className="font-display font-black leading-none text-white/[0.03]"
+          style={{ fontSize: '30vw' }}
+        >
+          GR
+        </span>
+      </div>
+
       {/* Animated red accent line */}
       <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-toyota-red opacity-60" />
 
       {/* Content */}
       <div className="relative z-10 text-center px-6 select-none flex flex-col items-center">
-        <Image
-          src="/logo-white.png"
-          alt="Toyota Gazoo Racing Uruguay"
-          width={420}
-          height={280}
-          priority
-          className="w-[260px] md:w-[360px] lg:w-[420px] h-auto drop-shadow-2xl"
-        />
-
-        <p className="mt-5 font-sans text-sm md:text-base text-white/60 uppercase tracking-[0.25em]">
-          Colección Oficial Uruguay
+        <p className="font-display font-bold uppercase tracking-[0.5em] text-white/40 text-[10px] md:text-xs mb-3">
+          Toyota
         </p>
 
-        <p className="mt-2 font-sans text-[10px] md:text-xs text-white/30 uppercase tracking-[0.3em]">
+        <h1 className="font-display font-black uppercase leading-none tracking-tight text-white text-5xl md:text-7xl lg:text-8xl">
+          Gazoo Racing
+        </h1>
+
+        <div className="mt-4 mb-3 flex items-center gap-3">
+          <span className="h-px w-8 bg-toyota-red/60" />
+          <span className="font-display font-bold uppercase tracking-[0.4em] text-toyota-red text-[10px]">
+            Uruguay
+          </span>
+          <span className="h-px w-8 bg-toyota-red/60" />
+        </div>
+
+        <p className="font-sans uppercase tracking-[0.35em] text-white/25 text-[9px] md:text-[10px]">
           Accesorios&nbsp;·&nbsp;Indumentaria&nbsp;·&nbsp;Equipamiento
         </p>
-
-        <div className="mt-3 flex justify-center">
-          <span className="inline-block h-0.5 w-16 bg-toyota-red rounded-full animate-pulse" />
-        </div>
       </div>
+
     </section>
   )
 }
