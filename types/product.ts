@@ -14,7 +14,6 @@ export interface SanityImage {
 export interface Product {
   _id: string
   name: string
-  slug: { current: string }
   section?: string
   category?: string
   price?: number

@@ -23,13 +23,6 @@ export const productSchema = defineType({
       validation: (Rule) => Rule.required().error('El nombre es obligatorio'),
     }),
     defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: { source: 'name', maxLength: 96 },
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
       name: 'section',
       title: 'Sección',
       type: 'string',
