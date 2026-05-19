@@ -1,7 +1,0 @@
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <g fill="#EB0A1E" transform="translate(10, 22.5) scale(0.296)">
-    <path fill-rule="evenodd" d="M 4,93 A 131,90 0 1,1 266,93 A 131,90 0 1,1 4,93 Z M 20,93 A 115,74 0 1,0 250,93 A 115,74 0 1,0 20,93 Z"/>
-    <ellipse cx="135" cy="72" rx="88" ry="35"/>
-    <ellipse cx="135" cy="106" rx="29" ry="79"/>
-  </g>
-</svg>
