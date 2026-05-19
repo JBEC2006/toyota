@@ -20,9 +20,6 @@ export const metadata: Metadata = {
   title: 'Colección Toyota Uruguay | Ayax',
   description:
     'Catálogo oficial de accesorios e indumentaria Toyota Uruguay. GR, Corolla Cross, Yaris Cross y más.',
-  icons: {
-    icon: '/Toyota_Symbol.svg.png',
-  },
   openGraph: {
     title: 'Colección Toyota Uruguay | Ayax',
     description:
