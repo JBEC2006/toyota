@@ -17,13 +17,16 @@ const barlowCondensed = Barlow_Condensed({
 })
 
 export const metadata: Metadata = {
-  title: 'Toyota Gazoo Racing Uruguay — Colección Oficial',
+  title: 'Colección Toyota Uruguay | Ayax',
   description:
-    'Catálogo oficial de productos Toyota Gazoo Racing Uruguay. Gorros, camperas, chombas, accesorios y más.',
+    'Catálogo oficial de accesorios e indumentaria Toyota Uruguay. GR, Corolla Cross, Yaris Cross y más.',
+  icons: {
+    icon: '/logo_toyota_blanco_fondo_transparente.png',
+  },
   openGraph: {
-    title: 'Toyota Gazoo Racing Uruguay — Colección Oficial',
+    title: 'Colección Toyota Uruguay | Ayax',
     description:
-      'Catálogo oficial de productos Toyota Gazoo Racing Uruguay.',
+      'Catálogo oficial de accesorios e indumentaria Toyota Uruguay.',
     type: 'website',
     locale: 'es_UY',
   },
